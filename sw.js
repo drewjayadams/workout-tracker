@@ -1,4 +1,4 @@
-const CACHE_NAME = "workout-log-v2";
+const CACHE_NAME = "workout-log-v3";
 const ASSETS = [
   ".",
   "index.html",
@@ -27,6 +27,10 @@ self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
   const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
   const isAppShell = url.origin === self.location.origin &&
     (url.pathname === "/" || url.pathname.endsWith(".html") || url.pathname.endsWith(".js") || url.pathname.endsWith(".css"));
 
