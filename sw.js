@@ -1,4 +1,4 @@
-const CACHE_NAME = "workout-log-v1";
+const CACHE_NAME = "workout-log-v2";
 const ASSETS = [
   ".",
   "index.html",
@@ -25,13 +25,29 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
+
+  const url = new URL(event.request.url);
+  const isAppShell = url.origin === self.location.origin &&
+    (url.pathname === "/" || url.pathname.endsWith(".html") || url.pathname.endsWith(".js") || url.pathname.endsWith(".css"));
+
+  if (isAppShell) {
+    event.respondWith(
+      fetch(event.request).then(response => {
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
+        return response;
+      }).catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(cached =>
       cached || fetch(event.request).then(response => {
         const responseClone = response.clone();
         caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
         return response;
-      }).catch(() => caches.match("index.html"))
+      })
     )
   );
 });
