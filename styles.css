@@ -229,6 +229,15 @@ button:disabled {
     padding-left: 18px;
 }
 
+.log-metric {
+    font-weight: 700;
+}
+
+.log-divider {
+    padding: 0 6px;
+    color: var(--muted);
+}
+
 
 @media (min-width: 640px) {
     .page {

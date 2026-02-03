@@ -104,7 +104,7 @@ function handleShowLogin() {
 
 // 3. FORM LOGIC (Dynamic Rows)
 const WORKOUT_A_DEFAULTS = ["Goblet Squat", "Overhead Press", "Chest Press", "Lateral Raises", "Hanging Leg Raise"];
-const WORKOUT_B_DEFAULTS = ["Glute Bridge", "Seated Row", "Lat Pulldown", "Tricep Ext", "Face Pulls"];
+const WORKOUT_B_DEFAULTS = ["RDL / KBD", "Glute Bridge", "Seated Row", "Lat Pulldown", "Tricep Ext", "Face Pulls"];
 const WORKOUT_LABELS = {
     A: "Anterior Chain (A)",
     B: "Posterior Chain (B)",
@@ -263,7 +263,7 @@ async function fetchWorkouts() {
             <h3>${date} - ${workoutLabel}</h3>
             ${session.notes ? `<p class="log-notes">${session.notes}</p>` : ''}
             <ul>
-                ${session.sets.map(s => `<li>${s.exercise_name}: <strong>${s.weight_lbs}lbs</strong> x ${s.reps}</li>`).join('')}
+                ${session.sets.map(s => `<li>${s.exercise_name}: <span class="log-metric">${s.weight_lbs} lb</span><span class="log-divider">·</span><span class="log-metric">${s.reps} reps</span></li>`).join('')}
             </ul>
         `;
         el.logsContainer.appendChild(card);
