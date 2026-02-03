@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Log</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <main class="page">
+        <header class="page-header row">
+            <h1>Workout Log</h1>
+            <div class="header-actions">
+                <button id="show-login-btn" class="ghost-btn" type="button">Log in</button>
+                <div class="settings">
+                    <button id="settings-btn" class="ghost-btn subtle settings-btn" type="button" aria-label="Settings">⚙</button>
+                    <div id="settings-menu" class="settings-menu" hidden>
+                        <button id="logout-btn" class="ghost-btn subtle" type="button">Log out</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="auth-container" class="panel">
+            <div id="login-section" hidden>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" autocomplete="email">
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" autocomplete="current-password">
+                </div>
+                <div class="row">
+                    <button id="login-btn" type="button">Log in</button>
+                    <span id="login-error" class="error" aria-live="polite"></span>
+                </div>
+            </div>
+
+            <div id="admin-section" hidden>
+
+                <div class="field">
+                    <label for="workout-type">Workout</label>
+                    <select id="workout-type">
+                        <option value="A">Anterior Chain (A)</option>
+                        <option value="B">Posterior Chain (B)</option>
+                        <option value="Custom" selected>Custom</option>
+                    </select>
+                </div>
+                <div class="row section-head">
+                    <h2>Sets</h2>
+                </div>
+                <div id="sets-container"></div>
+
+                <div class="row add-set-row">
+                    <button id="add-set-btn" type="button">Add set</button>
+                </div>
+
+                <div class="field">
+                    <label for="workout-date">Date</label>
+                    <input id="workout-date" type="date">
+                </div>
+                <div class="field">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" rows="3"></textarea>
+                </div>
+
+                <div class="action-bar">
+                    <button id="save-btn" type="button">Save workout</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="row section-head">
+                <h2>All workouts</h2>
+            </div>
+            <div id="logs-container">
+                <p>Loading recent workouts...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

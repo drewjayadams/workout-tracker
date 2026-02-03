@@ -1,0 +1,285 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light;
+    --bg: #f8f5ef;
+    --panel: var(--bg);
+    --text: #1a1a1a;
+    --muted: #6a635c;
+    --border: #1a1a1a;
+    --accent: #1a1a1a;
+    --input-bg: #eee9e1;
+    --button-bg: #1a1a1a;
+    --button-alt: #e6dfd5;
+}
+
+body {
+    margin: 0;
+    font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+}
+
+.page {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 14px 12px 60px;
+}
+
+.page-header h1 {
+    margin: 6px 0 14px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.panel {
+    background: var(--panel);
+    padding: 16px 12px 12px;
+    margin-bottom: 12px;
+    border-top: 2px solid var(--border);
+}
+
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-head {
+    margin: 6px 0 10px;
+    align-items: center;
+}
+
+h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+select,
+textarea {
+    border: 2px solid var(--border);
+    padding: 12px;
+    background: var(--input-bg);
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    border: 2px solid var(--border);
+    background: var(--button-bg);
+    color: #fff;
+    padding: 12px 14px;
+    cursor: pointer;
+    max-width: 100%;
+    min-height: 48px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.ghost-btn {
+    background: var(--button-alt);
+    color: var(--muted);
+    border: 2px solid var(--border);
+    padding: 8px 10px;
+}
+
+.ghost-btn.subtle {
+    opacity: 0.5;
+}
+
+.ghost-btn:hover {
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.error {
+    color: #8a1f1f;
+    font-size: 12px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+.set-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.6fr;
+    gap: 8px;
+    margin-bottom: 8px;
+    padding: 8px 0;
+}
+
+.set-row input {
+    min-width: 0;
+}
+
+.section-head button {
+    width: 100%;
+}
+
+@media (min-width: 360px) {
+    .section-head button {
+        width: auto;
+    }
+}
+
+.set-row .delete-btn {
+    grid-column: 1 / -1;
+    background: var(--button-alt);
+    color: var(--text);
+    min-height: 36px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.set-row .ex-name {
+    grid-column: 1 / -1;
+}
+
+.set-row .ex-weight,
+.set-row .ex-reps {
+    grid-column: span 1;
+}
+
+.set-row .delete-btn {
+    grid-column: span 1;
+}
+
+.action-bar {
+    margin-top: 12px;
+}
+
+.add-set-row {
+    justify-content: flex-end;
+    margin-bottom: 14px;
+}
+
+.action-bar button {
+    width: 100%;
+    font-size: 16px;
+}
+
+.log-card {
+    border-top: 2px solid var(--border);
+    padding: 12px 0;
+}
+
+.log-card:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.log-card h3 {
+    margin: 0 0 6px;
+    font-size: 14px;
+}
+
+.log-notes {
+    margin: 0 0 8px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.log-card ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+
+@media (min-width: 640px) {
+    .page {
+        padding: 18px 16px 70px;
+    }
+
+    .filters {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 420px) {
+    .filter-presets {
+        grid-template-columns: 1fr;
+    }
+}
+.logout-btn {
+    align-self: flex-end;
+    font-size: 11px;
+    padding: 4px 6px;
+    min-height: auto;
+    border-width: 1px;
+}
+.settings {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 6px;
+}
+
+.settings-btn {
+    font-size: 14px;
+    padding: 6px 8px;
+    min-height: auto;
+    border-width: 1px;
+}
+
+.settings-menu {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    border: 2px solid var(--border);
+    background: var(--panel);
+    padding: 6px;
+    z-index: 5;
+}
+
+.settings-menu .ghost-btn {
+    opacity: 0.35;
+    font-size: 11px;
+    padding: 4px 6px;
+    min-height: auto;
+    border-width: 1px;
+}
